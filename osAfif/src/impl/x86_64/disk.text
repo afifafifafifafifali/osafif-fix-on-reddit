@@ -1,0 +1,22 @@
+void kernel_main() {
+    print_set_color(PRINT_COLOR_LIGHT_BLUE, PRINT_COLOR_BLACK);
+    print_clear();
+    printf("Testing the disk functions.....\n");
+
+    // Allocate memory for disk write
+    unsigned char *data = (unsigned char *)malloc(512);
+    if (!data) {
+        printf("Memory allocation failed!\n");
+        return;
+    }
+
+    // Write 'afif' to the data buffer
+    strcpy((char *)data, "AFIF");
+
+    // Write the data to disk
+    putDiskBytes(data, 0, 1);
+    printf("Data written to disk\n");
+
+    // Free the memory after use
+    free(data);
+}
